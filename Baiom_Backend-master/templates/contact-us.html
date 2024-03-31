@@ -1,0 +1,155 @@
+{% extends 'base.html' %}  {% load static %}  {% block content %}
+
+ 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script>
+        // Display Django messages using SweetAlert2
+        {% if messages %}
+            document.addEventListener('DOMContentLoaded', function() {
+                {% for message in messages %}
+                    Swal.fire({
+                        icon: '{% if message.tags == "success" %}success{% elif message.tags == "warning" %}warning{% elif message.tags == "error" %}error{% else %}info{% endif %}',
+                        title: "{{ message|escapejs }}",
+                        showConfirmButton: false,
+                        timer: 3000  // Adjust the duration of the notification
+                    });
+                {% endfor %}
+            });
+        {% endif %}
+    </script>
+
+
+    <section>
+      <div class="main-contact">
+        <div class="contact-left">
+          <div class="contact-left-1">
+            <div class="contact-content-wrapper">
+              <h2>Contact us for more <span>information!</span></h2>
+              <p>
+                Do you have any queries? Reach out to us and we are happy to
+                help you!
+              </p>
+
+              <div class="contact-item">
+                <div class="contact-menu">
+                  <span><i class="fa fa-phone"></i></span>
+                  <div id="font">
+                    <h3>Call now:</h3>
+                    <h4>08069640635</h4>
+                  </div>
+                </div>
+                <div class="space"></div>
+                <div class="contact-menu">
+                  <span><i class="fa fa-envelope"></i></span>
+                  <div id="font">
+                    <h3>Email:</h3>
+                    <h4>tutors@baoiam.com</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <form method="post"  >
+        {% csrf_token %}
+        <div class="main-contact-wrapper">
+          <div class="contact-right">
+            <h2>Submit Your <span>Details</span></h2>
+            <!--{% if messages %}
+                  <ul class="messages">
+                     {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                  </ul>
+             {% endif %}-->
+
+            <div class="main-comment">
+              <div class="input-icons">
+                <div class="subcomment">
+                  <span>
+                    <input
+                      class="input-field"
+                      type="text" name="name"
+                      placeholder="Your Name"
+                    />
+                    <i class="fa fa-user icon" aria-hidden="true"></i>
+                  </span>
+                  <span>
+                    <input
+                      class="input-field"
+                      type="email" name="email"
+                      placeholder="Your Email"
+
+                    />
+                    <i class="fa fa-envelope icon" aria-hidden="true"></i>
+                  </span>
+                </div>
+
+                <div class="subcomment">
+                  <span>
+                    <input
+                      class="input-field"
+                      type="number"
+                      name="number"
+                      placeholder="Phone No."
+
+                    />
+                    <i class="fa fa-phone icon" aria-hidden="true"></i>
+                  </span>
+                  <span>
+                    <!-- <label for="course" class="label"> courses</label> -->
+                    <select id="cars" name="course" >
+                      <option value="Courses">Select Course</option>
+                      <option value="Web Development">Web Development</option>
+                      <option value="Product Development" >
+                        Product Management
+                      </option>
+                      <option value="Andriod Development" >
+                        Andriod Development
+                      </option>
+                      <option value="Digital Marketing" >
+                        Digital Marketing
+                      </option>
+                      <option value="SEO" >
+                        SEO
+                      </option>
+                      <option value="Graphic Design" >
+                        Graphic Design
+                      </option>
+                      <option value="Data Analytics">
+                        Data Analytics
+                      </option>
+                      <option value="Human Resource">Human Resource</option>
+                      <option value="Entrepreneurship">Entrepreneurship</option>
+                     </select
+                    ><i
+                      class="fa fa-sharp fa-regular fa-bookmark icon"
+                      aria-hidden="true"
+                    ></i>
+                  </span>
+                </div>
+
+                <span>
+                  <textarea
+                    name="msg"
+                    class="input-field"
+                    type="text"
+                    rows="7"
+                    cols="100"
+                    value="{{ form_data.message }}"
+                  ></textarea>
+
+                  <i class="fa fa-comment icon"></i>
+                </span>
+
+                <div class="submit-btn">
+                  <button class="contact-btn" type="submit" id="submit">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+    </section>
+{% endblock %}
