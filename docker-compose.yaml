@@ -1,1 +1,7 @@
+version: '3.9'
 
+services:
+  web:
+    image: "ajju121/website"
+    ports:
+      - "8000:8000"
